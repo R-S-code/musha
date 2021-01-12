@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登録</title>
+  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/subscribe.css" />
+</head>
+<body>
+<main>
+  <div class="subscribe-wrapper">
+    <a href="/" class="subscribe-musha-logo">
+      <img src="/images/logo_musha.png" alt="musha" />
+    </a>
+
+    <div class="subscribe-errors-wrapper">
+      <% if(errors.length > 0) { %>
+        <% errors.forEach((error) => { %>
+          <p class="subscribe-error"><%= error %></p><br>
+        <% }); %>
+      <% } %>
+    </div>
+
+    <form action="/subscribe" method="post">
+      <input type="text" name="subscribe_username" placeholder="ユーザーネーム" class="subscribe-input-userinfo"></input>
+      <input type="password" name="subscribe_password" placeholder="パスワード" class="subscribe-input-password"></input><br/>
+      <button type="submit" class="subscribe-btn-subscribe">登録</button>
+      <p class="subscribe-reccomend-login">すでにアカウントを持っている場合 <span class="subscribe-txt-login"><a href="/login">ログインはこちら</a></span></p>
+    </form>
+  </div>
+</main>
+
+<%- include("./set/footer") %>
+</body>

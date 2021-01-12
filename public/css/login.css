@@ -1,0 +1,88 @@
+@import url("set/variable.css");
+
+.login-wrapper {
+  padding: 120px 15px 50px;
+  text-align: center;
+}
+.login-musha-logo {
+  text-align: center;
+}
+.login-musha-logo img {
+  width: 100px;
+}
+.login-errors-wrapper {
+  margin-top: 40px;
+}
+.login-error {
+  background-color: rgb(253, 66, 181);
+  border-radius: 25px;
+  color: var(--base-white);
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+}
+.login-input-userinfo {
+  background-color: var(--base-green);
+  border-radius: 4px;
+  color: var(--base-white);
+  font-weight: 700;
+  height: 40px;
+  margin-top: 20px;
+  padding-left: 10px;
+  text-align: left;
+  width: 90%;
+}
+.login-input-userinfo::placeholder {
+  color: var(--base-white);
+  font-weight: 400;
+} 
+.login-input-password {
+  background-color: var(--base-green);
+  border-radius: 4px;
+  color: var(--base-white);
+  font-weight: 700;
+  height: 40px;
+  margin-top: 20px;
+  padding-left: 10px;
+  text-align: left;
+  width: 90%;
+}
+.login-input-password::placeholder {
+  color: var(--base-gray-one);
+  font-weight: 400;
+}
+.login-btn-login {
+  background-color: var(--base-green);
+  border-radius: 36px;
+  color: var(--base-white);
+  height: 40px;
+  margin-top: 70px;
+  width: 140px;
+}
+.login-btn-login:hover {
+  background-color: var(--base-hover-green);
+}
+.login-reccomend-login {
+  margin-top: 120px;
+}
+.login-txt-login {
+  color: var(--base-aqua);
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+}
+.login-txt-login:after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: var(--base-black);
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform .3s;
+}
+.login-txt-login:hover::after {
+  transform: scale(1, 1);
+}

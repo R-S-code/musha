@@ -1,0 +1,110 @@
+@import url("/css/set/variable.css");
+
+.header-wrapper {
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-gray);
+  display: flex;
+  font-size: var(--base-font-size);
+  font-family: 'Roboto-Medium';
+  height: 88px;
+  padding: 5px var(--base-side-space);
+}
+.header-container {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+.header-logo-musha img {
+  width: 54px;
+}
+.header-ico-search {
+  margin-left: 10px;
+}
+.header-ico-search img {
+  width: 20px;
+}
+.header-signbtns-wrapper {
+  display: flex;
+  margin-left: auto;
+}
+.header-btn-subscribe {
+  align-items: center;
+  background-color: var(--base-aqua);
+  border-radius: 36px;
+  color: var(--base-white);
+  cursor: pointer;
+  display: flex;
+  height: 26px;
+  justify-content: center;
+  margin: 0 15px 0 auto;
+  width: 72px;
+}
+.header-btn-subscribe:hover {
+  background-color: var(--base-hover-aqua);
+}
+.header-btn-login {
+  align-items: center;
+  background-color: var(--base-green);
+  border-radius: 36px;
+  color: var(--base-white);
+  cursor: pointer;
+  display: flex;
+  height: 26px;
+  justify-content: center;
+  width: 72px;
+}
+.header-btn-login:hover {
+  background-color: var(--base-hover-green);
+}
+
+/* ログイン後 */
+.header-menu-list-wrapper {
+  position: relative;
+}
+.header-btn-menu-list {
+  color: var(--base-aqua);
+  cursor: pointer;
+}
+.header-menu-list-none {
+  display: none;
+}
+.header-menu-list-block {
+  display: block;
+}
+.header-menu-list {
+  background: var(--base-white);
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  box-shadow: 1px 1px #c2c2c2;
+  color: var(--base-green);
+  font-weight: 700;
+  padding: 5px 10px 15px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: 100px;
+  z-index: 1;
+}
+.header-menu-list li {
+  display: inline-block;
+  margin-top: 15px;
+  position: relative;
+}
+.header-menu-list li::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: var(--base-black);
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform .3s;
+}
+.header-menu-list li:hover::after {
+  transform: scale(1, 1);
+}
+.header-menu-list li:last-child {
+  /* margin-bottom: 15px; */
+}

@@ -1,0 +1,11 @@
+@import url("/css/set/variable.css");
+
+.footer-wrapper {
+  align-items: center;
+  background: linear-gradient(90deg, #5BF9D3 0%, rgba(255, 255, 255, 0) 100%), #62F856;
+  color: var(--base-white);
+  display: flex;
+  font-size: 14px;
+  height: 50px;
+  justify-content: center;
+}

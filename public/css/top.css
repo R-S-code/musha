@@ -1,0 +1,128 @@
+@import url("/css/set/variable.css");
+
+.top-welcome-wrapper {
+  background-image: url('/images/top_bg_img.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.top-welcome-container {
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  padding: 0 var(--base-side-space) 40px;
+}
+.top-welcome-message {
+  background: linear-gradient(180deg, #5BF9D3 0%, rgba(255, 255, 255, 0) 100%), #62F856;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: 'Lato-Bold';
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 40px 0 0;
+}
+.top-logo-onpu {
+  margin-left: 5px;
+  width: 42px;
+}
+.top-site-explain {
+  font-weight: 700;
+  letter-spacing: 4%;
+  line-height: 28px;
+  margin-top: 50px;
+  text-align: center;
+}
+.top-sign-btns {
+  color: var(--base-white);
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 70px;
+}
+.top-btn-subscribe {
+  align-items: center;
+  background-color: var(--base-aqua);
+  border-radius: 36px;
+  cursor: pointer;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  width: 120px;
+}
+.top-btn-subscribe:hover {
+  background-color: var(--base-hover-aqua);
+}
+.top-btn-login {
+  align-items: center;
+  background-color: var(--base-green);
+  border-radius: 36px;
+  cursor: pointer;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  width: 120px;
+}
+.top-btn-login:hover {
+  background-color: var(--base-hover-green);
+}
+/* トップの記事メニュー欄 */
+.top-article-kind {
+  align-items: center;
+  background: linear-gradient(90deg, #5BF9D3 0%, rgba(255, 255, 255, 0) 100%), #62F856;
+  color: var(--base-white);
+  display: flex;
+  font-family: 'Roboto-Light';
+  height: 45px;
+  justify-content: space-around;
+}
+.top-article-kind p {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: space-around;
+}
+.top-article-kind p:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+/* 記事一覧 */
+.top-articles-wrapper .top-article-caption-wrapper {
+  align-items: center;
+  display: flex;
+  padding: 10px var(--base-side-space);
+}
+.top-articles-wrapper .top-article-caption-wrapper h1 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.top-articles-wrapper .top-article-caption-wrapper:nth-child(odd) {
+  background-color: var(--base-gray-one);
+}
+.top-articles-wrapper .top-article-caption-wrapper:nth-child(even) {
+  background-color: var(--base-gray-two);
+}
+.top-article-user-ico {
+  background-color: aquamarine;
+  border-radius: 50%;
+  height: 45px;
+  margin-right: 10px;
+  width: 45px;
+}
+.top-article-caption-details {
+  display: flex;
+}
+.top-article-caption-contributor {
+  font-family: 'Roboto-Light';
+  font-size: var(--base-font-size);
+  margin-top: 5px;
+}
+.top-article-caption-postingtime {
+  font-family: 'Roboto-Light';
+  font-size: var(--base-font-size);
+  margin: 5px 0 0 15px;
+}
+.top-article-caption-likes {
+  font-family: 'Roboto-Light';
+  font-size: var(--base-font-size);
+  margin: 5px 0 0 15px;
+}

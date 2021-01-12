@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トップ</title>
+  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/top.css" />
+</head>
+<body>
+<%- include("./set/header"); %>
+
+<main>
+  <div class="top-welcome-wrapper">
+    <div class="top-welcome-container">
+      <h1 class="top-welcome-message">Enjoy your music<img src="/images/ico_onpu.png" alt="♬" class="top-logo-onpu"/></h1>
+      <p class="top-site-explain">musha(ミューシャ) は音楽の知見を記録・共有するための情報共有コミュニティです。<br/>
+        音楽に対するわくわくや知識の共有をしましょう !
+      </p>
+      <% if (locals.isLoggedIn === false ) { %>
+        <div class="top-sign-btns">
+          <a href="/subscribe"><p class="top-btn-subscribe">登録</p></a>
+          <a href="/login"><p class="top-btn-login">ログイン</p></Link>
+        </div>
+      <% } %>
+    </div>   
+  </div>
+  
+  <div class="top-article-kind">
+    <p>New</p>
+    <p>トレンド</p>
+  </div>
+
+  <% articles.forEach((article, index) => { %>
+    <div class="top-articles-wrapper">
+    <% if(index/2 == 0) { %>
+      <div class="top-article-caption-wrapper-one">
+    <% } else { %>
+      <div class="top-article-caption-wrapper-one">
+    <% } %> 
+        <div class="top-article-user-ico"></div>
+        <div>
+          <h1><%= article.title %></h1>
+          <div class="top-article-caption-details">
+            <p class="top-article-caption-contributor">by  <%= article.username %> </p>
+            <p class="top-article-caption-postingtime">30minutes ago</p>
+            <p class="top-article-caption-likes">♡<%= article.good %></p>
+          </div>
+        </div>     
+      </div>
+    </div>
+  <% }) %>
+</main>
+
+<%- include("./set/footer"); %>
+</body>
+</html>

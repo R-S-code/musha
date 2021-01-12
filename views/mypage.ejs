@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登録</title>
+  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/mypage.css" />
+</head>
+
+<body>
+    <h1>ファイルアップロード</h1>
+    <form action="/mypage" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
+        <button type="submit">送信</button>
+    </form>
+
+    <img src="/userIcon/image.jpg" style="width: 50px; height: 50px; border-radius: 50%;">
+</body>
+
+</html>

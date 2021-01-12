@@ -1,0 +1,26 @@
+:root {
+  --base-black: #333333;
+  --base-white: #FCFCFC;
+  --base-green: #36F89A;
+  --base-hover-green:#36eb9A;
+  --base-aqua: #5BF9D3;
+  --base-hover-aqua: #5BebD3;
+  --base-gray-one: #F7F7F7;
+  --base-gray-two: #EDEDED;
+  --border-gray: #8A8A8A;
+  --base-side-space: 15px;
+  --base-font-size: 14px;
+}
+
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url('../fonts/Lato/Lato-Bold.ttf');
+}
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('../fonts/Roboto/Roboto-Light.ttf');
+}
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url('../fonts/Roboto/Roboto-Medium.ttf');
+}
