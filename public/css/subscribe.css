@@ -1,7 +1,7 @@
 @import url("/css/set/variable.css/");
 
 .subscribe-wrapper {
-  padding: 120px 15px 50px;
+  padding: 200px 15px 50px;
   text-align: center;
 }
 .subscribe-musha-logo {
@@ -57,13 +57,14 @@
   color: var(--base-white);
   height: 40px;
   margin-top: 70px;
+  transition: 0.2s;
   width: 140px;
 }
 .subscribe-btn-subscribe:hover {
   background-color: var(--base-hover-aqua);
 }
 .subscribe-reccomend-login {
-  margin-top: 120px;
+  margin-top: 200px;
 }
 .subscribe-txt-login {
   color: var(--base-green);

@@ -5,10 +5,10 @@
 <header class="header-wrapper">
   <div class="header-container">
     <a href="/" class="header-logo-musha">
-      <img src="images/logo_musha.png" alt="Site logo"/>
+      <img src="/images/logo_musha.png" alt="Site logo"/>
     </a>
     <div class="header-ico-search">
-      <img src="images/ico_search.png" />
+      <img src="/images/ico_search.png" />
     </div>
 
     <% if (locals.isLoggedIn === false ) { %>
@@ -17,18 +17,20 @@
         <a href="/login" class="header-btn-login">ログイン</a>   
       </div>
     <% } else { %>
-      <div style="background-color:red; height: 50px; width: 50px;  margin-left: auto;"></div>
-      <div class="header-menu-list-wrapper">
-        <div id="btn_header_menu_list" class="header-btn-menu-list">▼</div>
+      <div class="header-user-ico-wrapper" id="btn_header_menu_list">
+        <img src="/usericon/user1.jpg">
+        <div class="header-btn-menu-list">▼</div>
+      </div>
+     
+      <div class="header-menu-list-wrapper">   
         <ul class="header-menu-list header-menu-list-none" id="header_menu_list">
           <a href="/mypage"><li>マイページ</li></a>
-          <li>投稿する</li>
-          <li>ストック</li>
+          <a href="#"><li>投稿する</li></a>
+          <a href="#"><li>ストック</li></a>
           <a href="/logout"><li>ログアウト</li></a>
           </ul>
         </ul>
-      </div>
-      
+      </div> 
     <% } %>   
   </div>   
 </header>
@@ -36,9 +38,7 @@
   document.getElementById("btn_header_menu_list").addEventListener("click", ()=> {
     if(document.getElementById("header_menu_list").classList.contains("header-menu-list-none")) {
       document.getElementById("header_menu_list").classList.remove("header-menu-list-none");
-      document.getElementById("header_menu_list").classList.add("header-menu-list-block");
     } else {
-      document.getElementById("header_menu_list").classList.remove("header-menu-list-block");
       document.getElementById("header_menu_list").classList.add("header-menu-list-none");
     }
   })

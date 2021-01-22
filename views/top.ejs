@@ -14,43 +14,46 @@
 <main>
   <div class="top-welcome-wrapper">
     <div class="top-welcome-container">
-      <h1 class="top-welcome-message">Enjoy your music<img src="/images/ico_onpu.png" alt="♬" class="top-logo-onpu"/></h1>
-      <p class="top-site-explain">musha(ミューシャ) は音楽の知見を記録・共有するための情報共有コミュニティです。<br/>
-        音楽に対するわくわくや知識の共有をしましょう !
+      <h1 class="top-welcome-message"><span class="top-welcome-message-E">E</span>njoy your music<img src="/images/ico_onpu.png" alt="♬" class="top-logo-onpu"/></h1>
+      <p class="top-site-explain">musha(ミューシャ) は音楽の知見を記録・共有するための情報共有コミュニティです。<br>
+        好きな音楽のこと、得意な楽器のこと、曲を作る際に意識していること...なんでもあなたの音楽に対するわくわくや知識の共有をしましょう !
       </p>
       <% if (locals.isLoggedIn === false ) { %>
         <div class="top-sign-btns">
           <a href="/subscribe"><p class="top-btn-subscribe">登録</p></a>
-          <a href="/login"><p class="top-btn-login">ログイン</p></Link>
+          <a href="/login"><p class="top-btn-login">ログイン</p></a>
         </div>
       <% } %>
-    </div>   
+      <div class="top-article-melody"></div>
+    </div>
   </div>
-  
+
   <div class="top-article-kind">
     <p>New</p>
     <p>トレンド</p>
   </div>
 
+  <div class="top-articles-wrapper">
   <% articles.forEach((article, index) => { %>
-    <div class="top-articles-wrapper">
-    <% if(index/2 == 0) { %>
+    <% if(index%2 == 0) { %>
       <div class="top-article-caption-wrapper-one">
     <% } else { %>
-      <div class="top-article-caption-wrapper-one">
+      <div class="top-article-caption-wrapper-two">
     <% } %> 
-        <div class="top-article-user-ico"></div>
+        <div class="top-article-user-ico">
+          <img src="/usericon/user1.jpg"> 
+        </div>
         <div>
-          <h1><%= article.title %></h1>
+          <a href="/articleDetail/<%= article.id %>"><h1 class="top-article-title"><%= article.title %>タイトルタイトル</h1></a>
           <div class="top-article-caption-details">
-            <p class="top-article-caption-contributor">by  <%= article.username %> </p>
-            <p class="top-article-caption-postingtime">30minutes ago</p>
-            <p class="top-article-caption-likes">♡<%= article.good %></p>
+            <p class="top-article-caption-contributor">- by  <%= article.username %>username</p>
+            <p class="top-article-caption-postingtime">- 30minutes ago</p>
+            <p class="top-article-caption-likes">- <span>♡</span><%= article.good %></p>
           </div>
         </div>     
       </div>
-    </div>
   <% }) %>
+  </div>
 </main>
 
 <%- include("./set/footer"); %>

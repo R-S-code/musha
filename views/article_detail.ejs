@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= article[0].title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/article_detail.css" />
+</head>
+<body>
+<%- include("./set/header"); %>
+
+<main>
+  <div class="article-detail-top-wrapper">
+    <div class="article-detail-head-wrapper">
+      <div class="article-detail-contributor-icon"></div>
+      <p><%= article[0].username %></p>
+      <p>♡</p>
+    </div>
+    <h1 class="article-detail-title"><%= article[0].title %></h1>
+    <div class="article-detaile-stock-btn-wrapper">
+      <p class="article-detaile-stock-btn">ストックする</p>
+    </div>
+  </div>
+  <div class="article-detail-contents-wrapper">
+    <div class="article-detail-contents-container">
+      <p style="font-weight: 700;"><%= article[0].article %></p>
+      <hr>
+      <p>hogehogehogehogehogehogehogehoaaaあああああああ</p>
+    </div>
+  </div>
+ 
+  <h1 class="article-detail-comments-title">コメント</h1>
+  <div class="article-detail-comments-wrapper">
+    <% article_comments.forEach((info) => { %>
+      <div class="article-detail-comments-head">
+        <div><img src="/usericon/user1.jpg"></div>
+        <p><%= info.username %></p>
+      </div>
+      <p class="article-detail-comments-comment"><%= info.comment %></p>
+      <hr>
+    <% }) %>
+  </div>
+
+  <h1 class="article-detail-comments-vote-title">投稿する</h1>
+</main>
+
+<%- include("./set/footer"); %>
+</body>
+</html>

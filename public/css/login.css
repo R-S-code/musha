@@ -1,7 +1,7 @@
 @import url("set/variable.css");
 
 .login-wrapper {
-  padding: 120px 15px 50px;
+  padding: 200px 15px 50px;
   text-align: center;
 }
 .login-musha-logo {
@@ -57,13 +57,14 @@
   color: var(--base-white);
   height: 40px;
   margin-top: 70px;
+  transition: 0.2s;
   width: 140px;
 }
 .login-btn-login:hover {
   background-color: var(--base-hover-green);
 }
 .login-reccomend-login {
-  margin-top: 120px;
+  margin-top: 200px;
 }
 .login-txt-login {
   color: var(--base-aqua);

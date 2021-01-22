@@ -6,7 +6,6 @@ html {
 body {
   background-color: var(--base-white);
   color: var(--base-black);
-  font-family: 'Roboto-Medium';
   font-size: 16px;
   margin: 0 auto;
   max-width: 560px;

@@ -38,8 +38,9 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   connection.query(
-    'SELECT * FROM tokokiji Join users ON tokokiji.tokosha_id = users.id',
+    'SELECT articles.id, title, good, username FROM articles Join users ON articles.contributor_id = users.id',
     (error, results) => {
+      console.log(results);
       res.render('top.ejs', {articles: results});
     }
   );
@@ -114,7 +115,6 @@ app.post('/subscribe',
 app.get('/login', (req, res)  => {
   res.render('login.ejs', {errors: []});
 });
-
 app.post('/login', 
   (req, res, next) => {
     console.log('入力値チェック');
@@ -188,6 +188,27 @@ app.post('/mypage', upload.single('file'), function(req,res){
   res.redirect('/mypage');
 });
 
-let port = 3005;
+app.get('/articleDetail/:id', (req,res) => {
+  article_id = req.params.id;
+  connection.query(
+    'SELECT * FROM articles Join users ON articles.contributor_id = users.id  WHERE articles.id = ?',
+    [article_id],
+    (error1, results1) => {
+      connection.query(
+        'SELECT * FROM article_comments Join users ON article_comments.contributor_id = users.id where article_comments.article_id = ?',
+        [article_id],
+        (error2, results2) => {
+          res.render('article_detail.ejs', {
+            article: results1,
+            article_comments: results2,
+          });
+        }
+      )
+    }
+  )
+ 
+});
+
+const port = 3005;
 console.log(`running ${port}`);
 app.listen(port);

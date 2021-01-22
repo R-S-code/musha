@@ -10,13 +10,17 @@
 </head>
 
 <body>
-    <h1>ファイルアップロード</h1>
-    <form action="/mypage" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
-        <button type="submit">送信</button>
-    </form>
+<%- include("./set/header"); %>
+<main>
+  <div class="mypage-usericon"><img src="/userIcon/image.jpg"></div>
+  <h1>ファイルアップロード</h1>
+  <form action="/mypage" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
+      <button type="submit">送信</button>
+  </form>
 
-    <img src="/userIcon/image.jpg" style="width: 50px; height: 50px; border-radius: 50%;">
+ 
+</main>
 </body>
 
 </html>
