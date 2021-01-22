@@ -1,0 +1,28 @@
+@import url("set/variable.css");
+
+.mypage-whole-wrapper {
+  padding: 80px 10px 0;
+}
+.mypage-usericon {
+  text-align: center
+}
+.mypage-usericon img {
+  border-radius: 50%;
+  width: 100px;
+}
+.mypage-username-title {
+  /* font-weight: 700; */
+  margin-top: 45px;
+}
+.mypage-input-username {
+  border: 1px solid var(--border-gray);
+  border-radius: 5px;
+  height: 30px;
+  margin-top: 10px;
+  padding: 0 10px;
+  width: 100%;
+}
+.mypage-username-update-btn {
+  display: block;
+  margin: 10px auto 0;
+}

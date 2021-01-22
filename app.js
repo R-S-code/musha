@@ -211,4 +211,5 @@ app.get('/articleDetail/:id', (req,res) => {
 
 const port = 3005;
 console.log(`running ${port}`);
+console.log(`running 4000 on browser-sync`);
 app.listen(port);

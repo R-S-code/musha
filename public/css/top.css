@@ -142,22 +142,9 @@
 }
 .top-article-title {
   display: inline-block;
-  position: relative;
 }
-.top-article-title::after {
-  background-color: var(--base-black);
-  bottom: -4px;
-  content: '';
-  height: 2px;
-  left: 0;
-  position: absolute;
-  transform: scale(0, 1);
-  transform-origin: center top;
-  transition: transform .3s;
-  width: 100%;
-}
-.top-article-title:hover::after {
-  transform: scale(1, 1);
+.top-article-title:hover {
+  text-decoration: underline;
 }
 .top-article-caption-details {
   display: flex;

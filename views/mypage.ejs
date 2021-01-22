@@ -11,15 +11,20 @@
 
 <body>
 <%- include("./set/header"); %>
-<main>
-  <div class="mypage-usericon"><img src="/userIcon/image.jpg"></div>
-  <h1>ファイルアップロード</h1>
+<main class="mypage-whole-wrapper">
+  <div class="mypage-usericon"><img src="/userIcon/user1.jpg"></div>
+  <h1 class="mypage-username-title">ユーザー名</h1>
+  <form action="/namechange" method="POST">
+    <input type="text" name="username" class="mypage-input-username">
+    <button type="submit" class="mypage-username-update-btn">更新する</button>
+  </form>
+  
+  <!-- <h1>ファイルアップロード</h1>
   <form action="/mypage" method="POST" enctype="multipart/form-data">
       <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
-      <button type="submit">送信</button>
-  </form>
-
- 
+      <button type="submit">送信</button> -->
+  <!-- </form> -->
+  <p>アカウントを削除する</p>
 </main>
 </body>
 
