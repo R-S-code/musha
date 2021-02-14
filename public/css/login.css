@@ -14,16 +14,16 @@
   margin-top: 40px;
 }
 .login-error {
-  background-color: rgb(253, 66, 181);
+  background-color: var(--base-pink);
   border-radius: 25px;
   color: var(--base-white);
   display: inline-block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding: 5px 10px;
 }
 .login-input-userinfo {
   background-color: var(--base-green);
-  border-radius: 4px;
+  border-radius: 5px;
   color: var(--base-white);
   font-weight: 700;
   height: 40px;

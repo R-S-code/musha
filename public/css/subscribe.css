@@ -14,7 +14,7 @@
   margin-top: 40px;
 }
 .subscribe-error {
-  background-color: rgb(253, 66, 181);
+  background-color: var(--base-pink);
   border-radius: 25px;
   color: var(--base-white);
   display: inline-block;

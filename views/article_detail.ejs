@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= article[0].title %></title>
-  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/normalize.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
   <link rel="stylesheet" type="text/css" href="/css/article_detail.css" />
 </head>
@@ -21,7 +21,7 @@
     </div>
     <h1 class="article-detail-title"><%= article[0].title %>タイトル</h1>
     <div class="article-detaile-stock-btn-wrapper">
-      <p class="article-detaile-stock-btn">ストックする</p>
+      <button class="article-detaile-stock-btn">ストックする</button>
     </div>
   </div>
   <div class="article-detail-contents-wrapper">
@@ -50,9 +50,9 @@
   </div>
 
   <div class="article-detail-post-wrapper">
-    <h1 class="article-detail-comments-vote-title">投稿</h1>
-    <form action="/post_comment" method="POST">
-      <textarea name="comment" class="article-detail-input-commment"></textarea>
+    <h1 class="article-detail-comments-post-title">投稿</h1>
+    <form action="/postComment/<%= locals.userid %>" method="POST">
+      <textarea name="comment" name="comment" class="article-detail-input-commment"></textarea>
       <button type="submit" class="article-detail-postcomment-btn">投稿する</button>
     </form>
   </div>

@@ -1,8 +1,9 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/css/header.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </head>
 
-<header class="header-wrapper">
+<header class="header-wrapper" id="header">
   <div class="header-container">
     <a href="/" class="header-logo-musha">
       <img src="/images/logo_musha.png" alt="Site logo"/>
@@ -10,36 +11,43 @@
     <div class="header-ico-search">
       <img src="/images/ico_search.png" />
     </div>
-
+    <!-- ログイン前 -->
     <% if (locals.isLoggedIn === false ) { %>
       <div class="header-signbtns-wrapper">
         <a href="/subscribe" class="header-btn-subscribe">登録</a>
         <a href="/login" class="header-btn-login">ログイン</a>   
       </div>
+      <!-- ログイン後 -->
     <% } else { %>
       <div class="header-user-ico-wrapper" id="btn_header_menu_list">
         <img src="/usericon/user1.jpg">
         <div class="header-btn-menu-list">▼</div>
       </div>
-     
       <div class="header-menu-list-wrapper">   
         <ul class="header-menu-list header-menu-list-none" id="header_menu_list">
           <a href="/mypage"><li>マイページ</li></a>
-          <a href="#"><li>投稿する</li></a>
-          <a href="#"><li>ストック</li></a>
+          <a href="/post"><li>投稿する</li></a>
+          <a href="/stock"><li>ストック</li></a>
           <a href="/logout"><li>ログアウト</li></a>
-          </ul>
         </ul>
       </div> 
     <% } %>   
   </div>   
 </header>
 <script>
-  document.getElementById("btn_header_menu_list").addEventListener("click", ()=> {
-    if(document.getElementById("header_menu_list").classList.contains("header-menu-list-none")) {
-      document.getElementById("header_menu_list").classList.remove("header-menu-list-none");
+  let btn_header_menu_list = document.getElementById("btn_header_menu_list");
+
+  btn_header_menu_list.addEventListener("click", ()=> {
+    if(header_menu_list.classList.contains("header-menu-list-none")) {
+      header_menu_list.classList.remove("header-menu-list-none");
     } else {
-      document.getElementById("header_menu_list").classList.add("header-menu-list-none");
+      header_menu_list.classList.add("header-menu-list-none");
+    }
+  })
+
+  document.addEventListener("click", (e)=> {
+    if(!e.target.closest('#header_menu_list') && !e.target.closest('#btn_header_menu_list')) {
+      header_menu_list.classList.add("header-menu-list-none");
     }
   })
 </script>

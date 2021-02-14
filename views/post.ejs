@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿</title>
+  <link rel="stylesheet" type="text/css" href="/css/set/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/post.css" />
+</head>
+
+<%- include("./set/header"); %>
+
+<main>
+  <div>
+    <span>
+      <h1>hoge</h1>
+      <h2>hoge</h2>
+    </span>
+    <textarea id="marked_input"></textarea>
+    <div id="marked_output"></div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+let marked_input = document.getElementById("marked_input");
+let marked_output = document.getElementById("marked_output");
+
+marked_input.addEventListener("keyup", ()=> {
+  marked_output.innerHTML = marked(marked_input.value);
+})
+</script>
+</body>

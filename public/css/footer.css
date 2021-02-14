@@ -5,11 +5,16 @@
   background: linear-gradient(90deg, #5BF9D3 0%, rgba(255, 255, 255, 0) 100%), #62F856;
   color: var(--base-white);
   display: flex;
-  font-size: 14px;
   height: 50px;
   justify-content: center;
 }
+.footer-wrapper small {
+  font-size: 14px;
+}
 .footer-c {
-  font-size: 24px;
+  margin-top: 5px;
   margin-right: 5px;
+}
+.footer-c small {
+  font-size: 24px;
 }

@@ -1,17 +1,56 @@
 @import url("set/variable.css");
 
 .mypage-whole-wrapper {
-  padding: 80px 10px 0;
+  background-color: var(--base-gray-one);
+  padding: 20px 10px;
 }
-.mypage-usericon {
+.mypage-whole-container {
+  background-attachment: fixed;
+  background-blend-mode:lighten;
+  background-color:rgba(255,255,255,0.8);
+  background-image: url("../images/bg_mypage.png");
+  background-position: center;
+  background-size: cover;
+  border: 1px solid var(--base-gray-one);
+  border-radius: 5px;
+  box-shadow: 0px 3px 12px rgba(136, 136, 136, 0.25);
+  padding: 0 15px 30px;
+  word-break: break-all;
+}
+
+/* ユーザーアイコン部分 */
+.mypage-usericon-wrapper {
+  margin-top: 100px;
+  text-align: center;
+}
+.mypage-usericon-container {
+  display: inline-block;
   text-align: center
 }
-.mypage-usericon img {
+.mypage-usericon-container img {
   border-radius: 50%;
+  cursor: pointer;
   width: 100px;
 }
+
+.mypage-usericon-container button {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  color: var(--base-black);
+  left: 50%;
+  margin-top: 60px;
+  opacity: 0;
+  padding: 10px 15px;
+  position: absolute;
+  transform: translate(-50%);
+}
+.mypage-usericon-container p {
+  font-size: 18px;
+  font-weight: 700;
+}
+/* ユーザーネーム部分 */
 .mypage-username-title {
-  /* font-weight: 700; */
+  font-weight: 700;
   margin-top: 45px;
 }
 .mypage-input-username {
@@ -23,6 +62,24 @@
   width: 100%;
 }
 .mypage-username-update-btn {
+  background-color: var(--base-green);
+  border-radius: 36px;
+  color: var(--base-white);
   display: block;
-  margin: 10px auto 0;
+  margin: 50px auto 0;
+  padding: 6px 12px;
+}
+
+/* ストック部分 */
+.mypage-article-list-title {
+  font-weight: 700;
+  margin-top: 45px;
+}
+.mypage-btn-delete-account {
+  background-color: var(--base-pink);
+  border-radius: 36px;
+  color: var(--base-white);
+  display: block;
+  margin: 0 auto;
+  padding: 6px 12px;
 }

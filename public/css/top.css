@@ -58,7 +58,7 @@
   align-items: center;
   background-color: var(--base-aqua);
   border-radius: 36px;
-  box-shadow: 0 5px 5px rgb(133, 133, 133);
+  box-shadow: 0 5px 5px rgb(163, 163, 163);
   cursor: pointer;
   display: flex;
   height: 35px;
@@ -75,7 +75,7 @@
   align-items: center;
   background-color: var(--base-green);
   border-radius: 36px;
-  box-shadow: 0 5px 5px rgb(133, 133, 133);
+  box-shadow: 0 5px 5px rgb(163, 163, 163);
   cursor: pointer;
   display: flex;
   height: 35px;
@@ -165,6 +165,7 @@
   font-size: var(--base-font-size);
   margin: 5px 0 0 20px;
 }
-.top-article-caption-likes span {
-  color:rgb(255, 81, 197);
+.top-article-caption-likes img {
+  margin: 0 1px 1px 0;
+  width: 11px;
 }

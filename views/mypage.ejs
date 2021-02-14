@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登録</title>
+  <title>マイページ</title>
   <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
   <link rel="stylesheet" type="text/css" href="/css/mypage.css" />
@@ -12,20 +12,55 @@
 <body>
 <%- include("./set/header"); %>
 <main class="mypage-whole-wrapper">
-  <div class="mypage-usericon"><img src="/userIcon/user1.jpg"></div>
-  <h1 class="mypage-username-title">ユーザー名</h1>
-  <form action="/namechange" method="POST">
-    <input type="text" name="username" class="mypage-input-username">
-    <button type="submit" class="mypage-username-update-btn">更新する</button>
-  </form>
-  
-  <!-- <h1>ファイルアップロード</h1>
-  <form action="/mypage" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
-      <button type="submit">送信</button> -->
-  <!-- </form> -->
-  <p>アカウントを削除する</p>
-</main>
-</body>
+  <div class="mypage-whole-container">
+    <!-- ユーザーアイコン部分 -->
+    <div class="mypage-usericon-wrapper">
+      <div class="mypage-usericon-container" id="mypage_user_icon">
+        <img src="/userIcon/user1.jpg">
+        <button id="user_icon_edit_btn">編集</button>
+        <p><%= locals.username %></p>
+      </div>
+    </div>
 
+    <h2 class="mypage-username-title">ユーザー名</h2>
+    <form action="/namechange" method="POST">
+      <input type="text" name="username" class="mypage-input-username" value="<%= locals.username %>">
+      <button type="submit" class="mypage-username-update-btn">更新する</button>
+    </form>
+    
+    <h2 class="mypage-article-list-title">投稿記事一覧</h2>
+    <!-- <h1>ファイルアップロード</h1>
+    <form action="/mypage" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif">
+        <button type="submit">送信</button> -->
+    <!-- </form> -->  
+    <button class="mypage-btn-delete-account">アカウントを削除する</button>
+  </div>
+</main>
+<%- include("./set/footer"); %>
+</body>
+<script>
+  const mypage_user_icon = document.getElementById("mypage_user_icon");
+  const user_icon_edit_btn =  document.getElementById("user_icon_edit_btn");
+
+  // 編集ボタン表示処理
+  mypage_user_icon.addEventListener("mouseenter", ()=> {
+    user_icon_edit_btn.animate({
+      opacity: [0,1]
+    }, {
+      duration: 200,
+      fill: 'forwards'
+    })
+  })
+
+  // 非表示処理
+  mypage_user_icon.addEventListener("mouseleave", ()=> {
+    user_icon_edit_btn.animate({
+      opacity: [1,0]
+    }, {
+      duration: 200,
+      fill: 'forwards'
+    })
+  })
+</script>
 </html>

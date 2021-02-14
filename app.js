@@ -4,10 +4,12 @@ const app = express();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
+// 初期設定
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
+// データベース接続設定
 const arr = require('./.db_sec_info.js');
 const connection = mysql.createConnection({
   host: arr.host,
@@ -16,6 +18,7 @@ const connection = mysql.createConnection({
   database: arr.db,
 });
 
+// use
 app.use(
   session({
     secret: 'my_secret_key',
@@ -23,19 +26,23 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 app.use((req, res, next) => {
-  if (req.session.userId === undefined) {
+  if (req.session.userid === undefined) {
     console.log('ログインしていません');
     res.locals.isLoggedIn = false;
   } else {
     console.log('ログインしています');
+    res.locals.userid = req.session.userid;
     res.locals.username = req.session.username;
     res.locals.isLoggedIn = true;
   }
   next();
 });
 
+// 変数
+var reading_id = null;
+
+// ルーティング
 app.get('/', (req, res) => {
   connection.query(
     'SELECT articles.id, title, good, username FROM articles Join users ON articles.contributor_id = users.id',
@@ -146,7 +153,7 @@ app.post('/login',
         bcrypt.compare(plain_password, hash_password, (error, isEqual) => {
           if (isEqual){
             console.log('認証に成功しました');          
-            req.session.userId = results[0].id;
+            req.session.userid = results[0].id;
             req.session.username = results[0].username;
             res.redirect('/');
           } else {
@@ -189,6 +196,7 @@ app.post('/mypage', upload.single('file'), function(req,res){
 });
 
 app.get('/articleDetail/:id', (req,res) => {
+  reading_id = req.params.id;
   article_id = req.params.id;
   connection.query(
     'SELECT * FROM articles Join users ON articles.contributor_id = users.id  WHERE articles.id = ?',
@@ -206,10 +214,35 @@ app.get('/articleDetail/:id', (req,res) => {
       )
     }
   )
- 
+});
+app.post('/postComment/:id', (req, res) => {
+  connection.query(
+    'INSERT INTO article_comments (article_id, contributor_id, comment) values (?, ?, ?)',
+    [reading_id, req.session.userid, req.body.comment],
+    (error, result) => {
+      if(error) {
+        console.log("コメントエラー");
+        console.log(error);
+        res.redirect(`/articleDetail/${reading_id}`);
+      } else {
+        console.log(reading_id);
+        console.log(req.session.userid);
+        console.log(req.body.comment);
+        res.redirect(`/articleDetail/${reading_id}`);
+      }
+    }
+  )
 });
 
-const port = 3005;
+app.get('/post', (req, res) => {
+  res.render('post.ejs');
+});
+
+app.get('/stock', (req, res) => {
+  res.render('stock.ejs');
+});
+
+const port = 3800;
 console.log(`running ${port}`);
 console.log(`running 4000 on browser-sync`);
 app.listen(port);

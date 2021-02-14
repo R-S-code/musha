@@ -1,0 +1,20 @@
+@import url("/css/set/variable.css");
+
+/* 初期化 */
+.header-wrapper {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+}
+.header-container {
+  line-height: 0;
+}
+.header-menu-list {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+} 
+.header-menu-list a {
+  color: var(--base-green);
+  line-height: 1.15; /* 1 */
+}
