@@ -7,37 +7,38 @@ create table users (
   imagepath varchar(255)
 );
 
-create table articles (
-  id int primary key auto_increment,
-  contributor_id int,
+create table posts (
+  post_id int primary key auto_increment,
+  contributor_id int not null,
   title varchar(128) not null, 
-  good int,
-  article varchar(21710)
+  artist  varchar(50) not null,
+  contributed_time datetime,
+  article varchar(3000) not null,
+  foreign key (contributor_id) references users (user_id)
 );
 
-insert into
-articles (contributor_id, title, good, article)
-values (3, "first article", 5, "hogehogehogehogehogehogehogehogehogehogehogehoge");
-
-insert into
-articles (contributor_id, title, good, article)
-values (3, "second article", 12, "hogehogehogehogehogehogehogehogehogehogehogehoge");
-
-insert into
-articles (contributor_id, title, good, article)
-values (3, "third article", 20, "hogehogehogehogehogehogehogehogehogehogehogehoge");
-
-insert into
-articles (contributor_id, title, good, article)
-values (3, "4th article", 100, "hogehogehogehogehogehogehogehogehogehogehogehoge");
-
-create table article_comments (
-  id int primary key auto_increment,
+create table stock (
+  stock_id int primary key auto_increment,
+  user_id int,
   article_id int,
-  contributor_id int,
-  comment varchar(21710)
+  foreign key (user_id) references users (user_id),
+  foreign key (article_id) references users (user_id),
 );
 
-insert into
-article_comments (article_id, contributor_id, comment)
-values (1, 4, "ユーザーのコメントが入りますユーザーのコメントが入りますユーザーのコメントが入りますユーザーのコメントが入りますユーザーのコメントが入りますユーザーのコメントが入ります");
+create table post_comments (
+  comment_id int primary key auto_increment,
+  post_id int,
+  contributor_id int,
+  comment varchar(500),
+  foreign key (post_id) references posts (post_id),
+  foreign key (contributor_id) references users (user_id)
+);
+
+
+create table good (
+  good_id int primary key auto_increment,
+  user_id int,
+  article_id int,
+  foreign key (user_id) references users (user_id),
+  foreign key (post_id) references articles (post_id)
+);

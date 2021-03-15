@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const app = express();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
 
 // 初期設定
 app.set("view engine", "ejs");
@@ -39,24 +40,22 @@ app.use((req, res, next) => {
   next();
 });
 
-// 変数
-var reading_id = null;
-
 // ルーティング
+// トップ
 app.get('/', (req, res) => {
   connection.query(
-    'SELECT articles.id, title, good, username FROM articles Join users ON articles.contributor_id = users.id',
+    'SELECT post_id, title, artist, username, contributed_time FROM posts JOIN users ON posts.contributor_id = users.user_id',
     (error, results) => {
       console.log(results);
-      res.render('top.ejs', {articles: results});
+      res.render('top.ejs', {posts: results});
     }
   );
 });
 
+// 登録処理
 app.get('/subscribe', (req, res) => {
   res.render('subscribe.ejs', {errors: []});
 });
-
 app.post('/subscribe', 
   (req, res, next) => {
     console.log('入力値チェック');
@@ -102,11 +101,12 @@ app.post('/subscribe',
     const errors = [];
     bcrypt.hash(password, 10, (error, hash) => {
       connection.query(
-        'insert into users (username, password) values (?, ?)',
+        'INSERT INTO users (username, password) VALUES (?, ?)',
         [username, hash],
         (error, results) => {
           if(error) {
             errors.push('エラーが発生しました');
+            console.log(error);
             res.render('subscribe.ejs', { errors: errors }); 
           } else {
             req.session.userId = results.insertId;
@@ -119,6 +119,7 @@ app.post('/subscribe',
   }
 )
 
+// ログイン処理
 app.get('/login', (req, res)  => {
   res.render('login.ejs', {errors: []});
 });
@@ -153,7 +154,7 @@ app.post('/login',
         bcrypt.compare(plain_password, hash_password, (error, isEqual) => {
           if (isEqual){
             console.log('認証に成功しました');          
-            req.session.userid = results[0].id;
+            req.session.userid = results[0].user_id;
             req.session.username = results[0].username;
             res.redirect('/');
           } else {
@@ -170,45 +171,132 @@ app.post('/login',
   )
 });
 
+// ログアウト
 app.get('/logout', (req, res) => {
   req.session.destroy((error) => {
     res.redirect('/');
   });
 });
 
+// マイページ処理
 app.get('/mypage', (req, res) => {
-  res.render('mypage.ejs');
+  let userid = req.session.userid;
+  connection.query(
+    'SELECT * FROM posts WHERE contributor_id = ?',
+    [userid],
+    (error, results) => {
+      if(error) {
+        console.log("mypage get error");
+        console.log(error);
+        res.redirect("/");
+      } else {
+        res.render('mypage.ejs', {posts: results});
+      }
+    }
+  )
+  
+});
+app.post('/name_change', (req, res) => {
+  const username = req.body.username;
+  const userid = req.session.userid;
+
+  connection.query(
+    'UPDATE users SET username = ? WHERE user_id = ?',
+    [username, userid],
+    (error1, result1) => {
+      if(error1) {
+        console.log('ユーザーネーム変更エラー');
+        res.redirect('/mypage'); 
+      } else {
+        connection.query(
+          'SELECT username FROM users WHERE id = ?',
+          [userid],
+          (error2, result2) => {
+            console.log('yes');
+            console.log(result2);
+            req.session.username = result2[0].username;
+            res.redirect("/mypage");
+          }
+        )
+      }
+    }
+  )
+}); 
+
+app.get('/delete_article/:id', (req, res) => {
+  const article_id = req.params.id;
+  connection.query(
+    'DELETE FROM posts WHERE article_id = ?',
+    [article_id],
+    (error, result)=> {
+      if(error) {
+        console.log("記事削除エラー");
+        console.log(error);
+        res.redirect("/");
+      } else {
+        console.log(result);
+        res.redirect("/mypage");
+      }
+    }
+  )
+});
+      
+// 画像を変更するための処理
+app.get('/change_icon', (req, res) => {
+  res.render('change_icon.ejs',);
 });
 
-const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: function(req, file, cb){
+  destination: (req, file, cb)=> {
+    // 保存先
     cb(null, './public/userIcon')
   },
-  filename: function(req, file, cb){
-    cb(null, 'image.jpg')
+  filename: (req, file, cb)=> {
+    // 保存するファイルの名前
+    const userid = req.session.userid;
+    cb(null, `${userid}.jpg`)
   }
 })
 
-const upload = multer({storage: storage})
-app.post('/mypage', upload.single('file'), function(req,res){
-  res.redirect('/mypage');
+const upload = multer({storage: storage});
+
+app.post('/change_icon', upload.single('file'), (req,res)=> {
+  const userid = req.session.userid;
+  const imagepath = "/userIcon/" + userid + ".jpg";
+  connection.query(
+    'UPDATE users SET imagepath = ? WHERE user_id = ?',
+    [userid, imagepath],
+    (error, result)=> {
+      if(error) {
+        console.log("イメージパス変更エラー");
+        console.log(error);
+        res.redirect('/mypage');
+      } else {
+        console.log("イメージパス変更!");
+        console.log(result);
+        res.redirect('/mypage');
+      }
+    }
+  )
 });
 
-app.get('/articleDetail/:id', (req,res) => {
+
+// 記事詳細
+app.get('/postDetail/:id', (req,res) => {
   reading_id = req.params.id;
-  article_id = req.params.id;
+  post_id = req.params.id;
   connection.query(
-    'SELECT * FROM articles Join users ON articles.contributor_id = users.id  WHERE articles.id = ?',
-    [article_id],
+    'SELECT * FROM posts JOIN users ON posts.contributor_id = users.user_id  WHERE posts.post_id = ?',
+    [post_id],
     (error1, results1) => {
+      console.log(results1);
       connection.query(
-        'SELECT * FROM article_comments Join users ON article_comments.contributor_id = users.id where article_comments.article_id = ?',
-        [article_id],
+        'SELECT * FROM post_comments JOIN users ON post_comments.contributor_id = users.user_id where post_comments.post_id = ?',
+        [post_id],
         (error2, results2) => {
-          res.render('article_detail.ejs', {
-            article: results1,
-            article_comments: results2,
+          res.render('post_detail.ejs', {
+            post: results1,
+            post_comments: results2
           });
         }
       )
@@ -216,33 +304,138 @@ app.get('/articleDetail/:id', (req,res) => {
   )
 });
 app.post('/postComment/:id', (req, res) => {
+  const reading_id = req.params.id;
   connection.query(
-    'INSERT INTO article_comments (article_id, contributor_id, comment) values (?, ?, ?)',
+    'INSERT INTO post_comments (post_id, contributor_id, comment) values (?, ?, ?)',
     [reading_id, req.session.userid, req.body.comment],
     (error, result) => {
       if(error) {
         console.log("コメントエラー");
         console.log(error);
-        res.redirect(`/articleDetail/${reading_id}`);
+        res.redirect(`/postDetail/${reading_id}`);
       } else {
         console.log(reading_id);
         console.log(req.session.userid);
         console.log(req.body.comment);
-        res.redirect(`/articleDetail/${reading_id}`);
+        res.redirect(`/postDetail/${reading_id}`);
       }
     }
   )
 });
 
+// 投稿処理
 app.get('/post', (req, res) => {
   res.render('post.ejs');
 });
+app.post('/post', (req, res) => {
+  const title =  req.body.title;
+  const artist =  req.body.artist;
+  const contents = req.body.contents;
+  const userid = req.session.userid;
+  const datetime = new Date();
 
+  connection.query(
+    "INSERT INTO posts (contributor_id, title, artist, article, contributed_time) VALUES (?, ?, ?, ?, ?)",
+    [userid, title, artist, contents, datetime],
+    (error, result)=> {
+      if(error) {
+        console.log("記事投稿エラー");
+        console.log(error);
+        res.redirect("/");
+      } else {
+        console.log(result);
+        res.redirect("/");
+      }
+    }
+  )
+})
+
+// ストック
 app.get('/stock', (req, res) => {
-  res.render('stock.ejs');
+  const userid = req.session.userid;
+
+  connection.query(
+    "SELECT * FROM stock WHERE user_id = ?",
+    [userid],
+    (error, result)=> {
+      if(error) {
+        console.log("ストック取得エラー");
+        console.log(error);
+      } else {
+        console.log("ストック取得");
+        console.log(result);
+        res.render('stock.ejs', {stocks: result});
+      }
+    }
+  )
 });
+// ページ読み込み時ストック確認
+app.get("/stock_axios_check", (req, res)=>{
+  postid = Number(req.query.id);
+  userid = req.session.userid;
+
+  connection.query(
+    "SELECT * FROM stock WHERE article_id = ? AND user_id = ?",
+    [postid, userid],
+    (error, result)=> {
+      if(error) {
+        console.log("ストック取得エラー");
+        console.log(error);
+      } else {
+        console.log(postid);
+        console.log(userid);
+        console.log("ストック確認");
+        console.log(result);
+        res.send({result});
+      }
+    }
+  )
+});
+
+// ストックボタンを押した時
+app.get("/stock_axios", (req, res)=>{
+  postid = Number(req.query.id);
+  userid = req.session.userid;
+  
+  connection.query(
+    "INSERT INTO stock (article_id, user_id) VALUES (? ,?)",
+    [postid, userid],
+    (error, result)=> {
+      if(error) {
+        console.log("ストックエラー");
+        console.log(error);
+      } else {
+        console.log("ストック成功");
+        console.log(result);
+        res.send({result})
+      }
+    }
+  )
+})
+// ストックから外すを押した時
+app.get("/unstock_axios", (req, res)=>{
+  postid = Number(req.query.id);
+  userid = req.session.userid;
+  
+  connection.query(
+    "DELETE FROM stock WHERE article_id = ? AND user_id = ?",
+    [postid, userid],
+    (error, result)=> {
+      if(error) {
+        console.log("アンストックエラー");
+        console.log(error);
+      } else {
+        console.log("アンストック成功");
+        console.log(result);
+        res.send({result})
+      }
+    }
+  )
+})
 
 const port = 3800;
 console.log(`running ${port}`);
 console.log(`running 4000 on browser-sync`);
 app.listen(port);
+
+

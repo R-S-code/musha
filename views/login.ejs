@@ -6,11 +6,13 @@
   <title>ログイン</title>
   <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="/css/login.css" />
 </head>
 <body>
-<main>
-  <div class="login-wrapper">
+<%- include("./set/header"); %>
+<main class="login-whole-wrapper">
+  <div class="login-whole-container">
     <a href="/" class="login-musha-logo">
       <img src="/images/logo_musha.png" alt="musha" />
     </a>
@@ -18,15 +20,15 @@
     <div class="login-errors-wrapper">
       <% if(errors.length > 0) { %>
         <% errors.forEach((error) => { %>
-          <p class="login-error"><%= error %></p><br>
+          <i class="fas fa-exclamation"></i><p class="login-error"><%= error %></p><br>
         <% }); %>
       <% } %>
     </div>
   
     <form action="/login" method="post">
-      <input type="text" name="login_username" placeholder="ユーザーネーム" class="login-input-userinfo"></input>
+      <input type="text" name="login_username" class="login-input-userinfo" placeholder="ユーザーネーム"></input>
       <input type="password" name="login_password" placeholder="パスワード" class="login-input-password"></input><br/>
-      <button type="submit" class="login-btn-login">ログイン</button>
+      <button type="submit" class="login-btn-login"><i class="fas fa-sign-in-alt"></i>ログイン</button>
       <p class="login-reccomend-login">アカウントを持っていない場合<span class="login-txt-login"><a href="/subscribe">登録はこちら</a></span></p>
     </form>
   </div>

@@ -6,6 +6,77 @@
   <title>ストック</title>
   <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
-  <link rel="stylesheet" type="text/css" href="/css/subscribe.css" />
+  <link rel="stylesheet" type="text/css" href="/css/stock.css" />
 </head>
+
 <body>
+  <%- include("./set/header"); %>
+  <main>
+    <!-- 全体 -->
+    <div class="stocks-whole-wrapper">
+      <!-- 全体の四角 -->
+      <div class="stock-whole-container">
+        <!-- タイトルメッセージ -->
+        <h1 class="stock-message">your stocks</h1>
+
+        <!-- ストック記事一覧 -->
+        <div class="top-stocks-wrapper">
+          <% stocks.forEach((stock, index) => { %>
+            <% if(index%2 == 0) { %>
+              <div class="top-article-caption-wrapper-one">
+            <% } else { %>
+              <div class="top-article-caption-wrapper-two">
+            <% } %> 
+                <div class="top-article-user-ico">
+                  <img src="/usericon/<%= article.contributor_id %>.jpg"  onerror="this.src='/userIcon/default.png';"/ alt="no pic">
+                </div>
+                <div>
+                  <a href="/articleDetail/<%= article.article_id %>">
+                    <div class="top-article-upper-wrapper">
+                      <h1 class="top-article-title"><%= article.title %></h1>
+                      <p>(<%= article.artist %>)</p>
+                    </div>
+                  </a>
+                
+                  <div class="top-article-caption-details">
+                    <p class="top-article-caption-contributor">- by  <%= article.username %></p>
+                    <!-- 投稿時間処理 -->
+                    <% 
+                    let months = {
+                      Jan: "1", 
+                      Feb: "2", 
+                      Mar: "3",
+                      Apr: "4", 
+                      May: "5", 
+                      Jun: "6", 
+                      Jul: "7",
+                      Aug: "8",
+                      Sep: "9",
+                      Oct: "10",
+                      Nov: "11",
+                      Dec: "12"
+                    };
+                    let weeks = {
+                      Mon: "月", 
+                      Tue: "火", 
+                      Wed: "水",
+                      Thu: "木", 
+                      Fri: "金", 
+                      Sat: "土", 
+                      Sun: "日"
+                    };
+                    let time = String(article.contributed_time).split(' ');
+                    %>
+                    <p class="top-article-caption-postingtime">- <%= time[3] %>/<%= months[time[1]] %>/<%= time[2] %>(<%= weeks[time[0]] %>)<%= String(time[4]).slice(0, -3) %></p>
+                    <p class="top-article-caption-likes">- <img src="/images/ico_heart_pink_full.png"></p>
+                  </div>
+                </div>     
+              </div>
+          <% }) %>
+        <!-- stock-wrapper終了タグ -->
+        </div>
+      <!-- stcok-whole-container終了タグ -->
+      </div>
+    </div>
+  </main>
+</body>

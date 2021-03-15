@@ -2,20 +2,26 @@
 
 .header-wrapper {
   align-items: flex-end;
-  border-bottom: 1px solid var(--border-gray);
+  background: var(--base-black);
   display: flex;
   font-size: var(--base-font-size);
   font-family: 'Roboto-Medium';
-  height: 100px;
-  padding: 5px var(--base-side-space);
+  height: 70px;
+  padding: 5px 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 }
 .header-container {
   align-items: center;
   display: flex;
+  margin: 0 auto;
+  max-width: 560px;
   width: 100%;
 }
 .header-logo-musha img {
-  width: 54px;
+  height: 46px;
+  width: 52px;
 }
 .header-ico-search {
   margin-left: 10px;
@@ -29,8 +35,6 @@
 }
 .header-btn-subscribe {
   align-items: center;
-  background-color: var(--base-aqua);
-  border-radius: 36px;
   color: var(--base-white);
   cursor: pointer;
   display: flex;
@@ -45,8 +49,6 @@
 }
 .header-btn-login {
   align-items: center;
-  background-color: var(--base-green);
-  border-radius: 36px;
   color: var(--base-white);
   cursor: pointer;
   display: flex;
@@ -74,7 +76,10 @@
   color: var(--base-hover-aqua);
 }
 .header-user-ico-wrapper img {
+  border: 1px solid var(--base-white);
   border-radius: 50%;
+  height: 35px;
+  object-fit: contain;
   width: 35px;
 }
 .header-btn-menu-list {
@@ -90,7 +95,7 @@
   border: 1px solid #e9e9e9;
   border-radius: 5px;
   box-shadow: 1px 1px #c2c2c2;
-  color: var(--base-green);
+  color: var(--base-hover-green);
   font-weight: 700;
   transition: 0.2s;
   padding: 5px 10px 15px;
@@ -106,6 +111,6 @@
   margin-top: 15px;
 }
 .header-menu-list li:hover {
-  color: var(--base-hover-green);
+  color: var(--base-hover-hover-green);
 }
 

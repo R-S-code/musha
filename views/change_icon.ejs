@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アイコン変更</title>
+  <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
+  <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
+  <link rel="stylesheet" type="text/css" href="/css/change_icon.css" />
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+<%- include("./set/header"); %>
+
+<main class="change-icon-whole-wrapper">
+  <div class="change-icon-whole-container">
+    <div class="change-icon-nowicon-wrapper">
+      <img src="/userIcon/<%= locals.userid %>.jpg" id="icon_preview" onerror="this.src='/userIcon/default.png';"/ alt="no pic">
+      <p><%= locals.username %></p>
+    </div>
+  
+    <form action="/change_icon" method="POST" enctype="multipart/form-data" class="change-icon-usericon-edit">
+      <input type="file" name="file" accept=".png, .jpg, .jpeg, .gif" id="select_icon">
+      <label for="select_icon" class="change-icon-edit-btn" id="user_icon_edit_btn"><i class="fas fa-portrait"></i>画像を選択する</label>
+      <button type="submit">変更する</button>
+    </form>
+  </div>
+</main>
+<%- include("./set/footer"); %>
+</body>
+<script>
+  let select_icon = document.getElementById("select_icon");
+  let icon_preview = document.getElementById("icon_preview");
+
+  select_icon.addEventListener("change", (e)=> {
+    const reader = new FileReader();
+    reader.onload = (e)=> {
+      icon_preview.setAttribute("src", e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  });
+</script>
+</body>
+</html>

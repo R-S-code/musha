@@ -1,16 +1,12 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/css/header.css" />
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </head>
 
 <header class="header-wrapper" id="header">
   <div class="header-container">
     <a href="/" class="header-logo-musha">
-      <img src="/images/logo_musha.png" alt="Site logo"/>
+      <img src="/images/logo_musha_white.png" alt="Site logo"/>
     </a>
-    <div class="header-ico-search">
-      <img src="/images/ico_search.png" />
-    </div>
     <!-- ログイン前 -->
     <% if (locals.isLoggedIn === false ) { %>
       <div class="header-signbtns-wrapper">
@@ -20,7 +16,7 @@
       <!-- ログイン後 -->
     <% } else { %>
       <div class="header-user-ico-wrapper" id="btn_header_menu_list">
-        <img src="/usericon/user1.jpg">
+        <img src="/usericon/<%= locals.userid %>.jpg"  onerror="this.src='/userIcon/default.png';"/ alt="no pic">
         <div class="header-btn-menu-list">▼</div>
       </div>
       <div class="header-menu-list-wrapper">   

@@ -1,0 +1,54 @@
+@import url("/css/set/variable.css");
+
+/* 全体 */
+.change-icon-whole-wrapper {
+  padding: 70px 0 0 0;
+}
+.change-icon-whole-container {
+  background-color: rgb(253, 255, 255);
+  border: 1px solid var(--base-gray-one);
+  box-shadow: 0px 3px 12px rgba(136, 136, 136, 0.25);
+  padding: 0 15px 60px;
+  word-break: break-all;
+}
+/* アイコン部分 */
+.change-icon-nowicon-wrapper {
+  margin-top: 90px;
+  text-align: center;
+  width: 100%;
+}
+.change-icon-nowicon-wrapper img {
+  border-radius: 50%;
+  box-shadow: 2px 5px 4px rgba(136, 136, 136, 0.30);
+  height: 250px;
+  object-fit: contain;
+  width: 250px;
+}
+.change-icon-nowicon-wrapper p {
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+/* 変更ボタン */
+.change-icon-usericon-edit input  {
+  display: none;
+}
+.change-icon-edit-btn {
+  align-items: center;
+  background-color: var(--base-aqua);
+  border-radius: 36px;
+  color: var(--base-white);
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-top: 150px;
+}
+.change-icon-usericon-edit button {
+  background-color: var(--base-green);
+  border-radius: 36px;
+  color: var(--base-white);
+  height: 40px;
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+}

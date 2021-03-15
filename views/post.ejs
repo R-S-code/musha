@@ -7,27 +7,60 @@
   <link rel="stylesheet" type="text/css" href="/css/set/normalize.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
   <link rel="stylesheet" type="text/css" href="/css/post.css" />
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 
+<body>
 <%- include("./set/header"); %>
 
-<main>
-  <div>
-    <span>
-      <h1>hoge</h1>
-      <h2>hoge</h2>
-    </span>
-    <textarea id="marked_input"></textarea>
-    <div id="marked_output"></div>
+<main class="post-whole-wrapper">
+  <div class="post-whole-container">
+    <h1 class="post-message">Let's write!</h1>
+    <form method="POST" action="/post">
+      <input placeholder="曲名" class="post-title-input" name="title" required>
+      <input placeholder="アーティスト" class="post-artist-input" name="artist" required>
+      <p class="post-please-markdown">※markdown記法でアレンジすることもできます</p>
+      <textarea  placeholder="あなたの音楽の知見やわくわくを共有しましょう" class="post-article-input" id="marked_input" name="contents" required></textarea>
+
+      <div class="post-preview-button-wrapper">
+        <p class="post-preview-button" id="preview_btn"><i class="far fa-eye"></i>プレビュー</p>
+      </div>
+
+      <div class="post-marked-wrapper" id="marked_wrapper">
+        <p id="marked_output" class="post-marked-output"></p>
+        <p class="post-preview-close-btn" id="preview_close_btn"><i class="fas fa-times"></i>閉じる</p>
+      </div>
+     
+      <button type="submit" class="post-submit-btn">投稿する</button>
+    </form>
   </div>
 </main>
+
+<%- include("./set/footer"); %>
+</body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-let marked_input = document.getElementById("marked_input");
-let marked_output = document.getElementById("marked_output");
 
+// マークダウン
+const marked_wrapper = document.getElementById("marked_wrapper");
+marked_wrapper.style.display = "none";
+const marked_input = document.getElementById("marked_input");
+const marked_output = document.getElementById("marked_output");
 marked_input.addEventListener("keyup", ()=> {
   marked_output.innerHTML = marked(marked_input.value);
 })
+
+// プレビューの表示処理
+const preview_btn = document.getElementById("preview_btn");
+preview_btn.addEventListener("click", ()=> {
+  marked_wrapper.style.display = "block";
+})
+
+// プレビューを閉じる処理
+const preview_close_btn = document.getElementById("preview_close_btn");
+preview_close_btn.addEventListener("click", ()=>  {
+  marked_wrapper.style.display = "none";
+})
+
 </script>
 </body>

@@ -1,14 +1,13 @@
 :root {
-  --base-black: #3d3d3d;
+  --base-black: #242424;
   --base-white: #ffffff;
-  --base-green: #36F89A;
-  --base-hover-green:#36eb9A;
-  --base-aqua: #5BF9D3;
-  --base-hover-aqua: #5BebD3;
-  --base-aqua: #5BF9D3;
+  --base-green: #03f789;
+  --base-hover-green: #01eb82;
+  --base-aqua: #15f1d4;
+  --base-hover-aqua: #11e4c8;
   --base-pink: #FF51C5;
-  --base-gray-one: #F7F7F7;
-  --base-gray-two: #EDEDED;
+  --base-gray-one: #fafafa;
+  --base-gray-two: #ebebeb;
   --border-gray: #dadada;
   --base-side-space: 15px;
   --base-font-size: 14px;
@@ -25,4 +24,9 @@
 @font-face {
   font-family: 'Roboto-Medium';
   src: url('../../fonts/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'SmartFontUI';
+  src: url('../../fonts/SmartFontUI/SmartFont-P.ttf');
 }

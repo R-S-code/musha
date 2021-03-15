@@ -1,57 +1,54 @@
 @import url("set/variable.css");
 
 .mypage-whole-wrapper {
-  background-color: var(--base-gray-one);
-  padding: 20px 10px;
+  padding: 70px 0 0 0;
 }
+
 .mypage-whole-container {
-  background-attachment: fixed;
-  background-blend-mode:lighten;
-  background-color:rgba(255,255,255,0.8);
-  background-image: url("../images/bg_mypage.png");
-  background-position: center;
-  background-size: cover;
+  background-color: var(--base-white);
   border: 1px solid var(--base-gray-one);
-  border-radius: 5px;
   box-shadow: 0px 3px 12px rgba(136, 136, 136, 0.25);
-  padding: 0 15px 30px;
+  padding: 0 15px 40px;
   word-break: break-all;
 }
 
 /* ユーザーアイコン部分 */
 .mypage-usericon-wrapper {
-  margin-top: 100px;
+  margin-top: 110px;
   text-align: center;
 }
 .mypage-usericon-container {
+  cursor: pointer;
   display: inline-block;
   text-align: center
 }
 .mypage-usericon-container img {
   border-radius: 50%;
-  cursor: pointer;
+  box-shadow: 2px 5px 4px rgba(136, 136, 136, 0.30);
+  height: 100px;
+  object-fit: contain;
   width: 100px;
 }
-
-.mypage-usericon-container button {
-  background: rgba(255, 255, 255, 0.8);
+.mypage-usericon-container div {
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
-  color: var(--base-black);
+  color: var(--base-white);
   left: 50%;
-  margin-top: 60px;
   opacity: 0;
-  padding: 10px 15px;
+  padding: 15px;
   position: absolute;
+  margin-top: -50px;
   transform: translate(-50%);
 }
 .mypage-usericon-container p {
   font-size: 18px;
   font-weight: 700;
+  margin-top: 5px;
 }
 /* ユーザーネーム部分 */
 .mypage-username-title {
   font-weight: 700;
-  margin-top: 45px;
+  margin-top: 80px;
 }
 .mypage-input-username {
   border: 1px solid var(--border-gray);
@@ -70,16 +67,47 @@
   padding: 6px 12px;
 }
 
-/* ストック部分 */
+/* 投稿記事一覧 */
+.mypage-no-contribution {
+  margin-top: 30px;
+  text-align: center;
+}
+.mypage-article-container {
+  align-items: center;
+  border-bottom: 1px solid var(--base-green);
+  display: flex;
+  font-size: 14px;
+  height: 20px;
+  margin: 10px 0;
+  padding: 25px 0 15px 0;
+  width: 100%;
+}
 .mypage-article-list-title {
   font-weight: 700;
-  margin-top: 45px;
+  margin-top: 60px;
 }
+.mypage-article-voted-title {
+  background-color: var(--base-green);
+  color: var(--base-white);
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+  margin-right: 10px;
+}
+.mypage-article-delete {
+  color: var(--base-pink);
+  font-size: 24px;
+  margin-left: auto;
+  text-align: center;
+}
+
+/* アカウント削除 */
 .mypage-btn-delete-account {
   background-color: var(--base-pink);
   border-radius: 36px;
   color: var(--base-white);
   display: block;
-  margin: 0 auto;
+  margin: 80px auto 0;
   padding: 6px 12px;
 }
