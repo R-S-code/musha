@@ -18,8 +18,8 @@
     <div class="top-welcome-container">
       <h1 class="top-welcome-message"><span class="top-welcome-message-E">E</span>njoy your music<img src="/images/ico_onpu.png" alt="♬" class="top-logo-onpu"/></h1>
       <div class="top-explain-wrapper">
-        <p class="top-musha-message">mushaで自分の好きな曲を紹介してください！</p>
-        <p class="top-musha-explain">mushaは曲名、アーティスト名と共に曲のよさを紹介(投稿)していただくサービスです。投稿された曲の紹介を見て、あなたの知らなかった曲のよさを知ろう!</p>
+        <p class="top-musha-message"><span></span>mushaで自分の好きな曲を紹介してください！</p>
+        <p class="top-musha-explain">mushaは曲名、アーティスト名と共に曲のよさを紹介(投稿)していただくサービスです。投稿された曲の紹介を見て、あなたの知らなかった曲のよさを知ってみましょう!</p>
       </div>   
       <% if (locals.isLoggedIn === false ) { %>
         <div class="top-article-melody"></div>
@@ -89,7 +89,7 @@
               let time = String(post.contributed_time).split(' ');
               %>
               <p class="top-article-caption-postingtime">- <%= time[3] %>/<%= months[time[1]] %>/<%= time[2] %>(<%= weeks[time[0]] %>)<%= String(time[4]).slice(0, -3) %></p>
-              <p class="top-article-caption-likes">- <img src="/images/ico_heart_pink_full.png"></p>
+              <p class="top-article-caption-likes">- <img src="/images/ico_heart_pink_full.png">100</p>
             </div>
           </div>     
         </div>

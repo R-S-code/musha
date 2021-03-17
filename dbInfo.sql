@@ -20,9 +20,9 @@ create table posts (
 create table stock (
   stock_id int primary key auto_increment,
   user_id int,
-  article_id int,
+  post_id int,
   foreign key (user_id) references users (user_id),
-  foreign key (article_id) references users (user_id),
+  foreign key (post_id) references posts (post_id)
 );
 
 create table post_comments (

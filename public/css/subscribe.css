@@ -1,13 +1,9 @@
 @import url("/css/set/variable.css/");
 
 .subscribe-whole-wrapper {
-  padding: 90px 20px 20px;
+  padding: 70px 0 0 0;
 }
-@media screen and (max-width: 560px) {
-  .subcribe-whole-wrapper {
-    padding: 90px 0 20px;
-  }
-}
+
 .subscribe-whole-container {
   background-color: rgb(255, 255, 255);
   border: 1px solid var(--base-gray-one);

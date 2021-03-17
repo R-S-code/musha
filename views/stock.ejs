@@ -7,39 +7,43 @@
   <link rel="stylesheet" type="text/css" href="/css/set/destyle.css" />
   <link rel="stylesheet" type="text/css" href="/css/set/default.css" />
   <link rel="stylesheet" type="text/css" href="/css/stock.css" />
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 
 <body>
   <%- include("./set/header"); %>
   <main>
     <!-- 全体 -->
-    <div class="stocks-whole-wrapper">
+    <div class="stock-whole-wrapper">
       <!-- 全体の四角 -->
       <div class="stock-whole-container">
         <!-- タイトルメッセージ -->
-        <h1 class="stock-message">your stocks</h1>
+        <h1 class="stock-message"><i class="far fa-folder-open"></i>your stocks</h1>
 
         <!-- ストック記事一覧 -->
-        <div class="top-stocks-wrapper">
+        <div class="stock-post-kind">
+          <p>List</p>
+        </div>
+        <div class="stock-stocks-wrapper">
           <% stocks.forEach((stock, index) => { %>
             <% if(index%2 == 0) { %>
-              <div class="top-article-caption-wrapper-one">
+              <div class="stock-stock-caption-wrapper-one">
             <% } else { %>
-              <div class="top-article-caption-wrapper-two">
+              <div class="stock-stock-caption-wrapper-two">
             <% } %> 
-                <div class="top-article-user-ico">
-                  <img src="/usericon/<%= article.contributor_id %>.jpg"  onerror="this.src='/userIcon/default.png';"/ alt="no pic">
+                <div class="stock-stock-user-ico">
+                  <img src="/usericon/<%= stock.contributor_id %>.jpg"  onerror="this.src='/userIcon/default.png';"/ alt="no pic">
                 </div>
                 <div>
-                  <a href="/articleDetail/<%= article.article_id %>">
-                    <div class="top-article-upper-wrapper">
-                      <h1 class="top-article-title"><%= article.title %></h1>
-                      <p>(<%= article.artist %>)</p>
+                  <a href="/postDetail/<%= stock.post_id %>">
+                    <div class="stock-stock-upper-wrapper">
+                      <h1 class="stock-stock-title"><%= stock.title %></h1>
+                      <p>(<%= stock.artist %>)</p>
                     </div>
                   </a>
                 
-                  <div class="top-article-caption-details">
-                    <p class="top-article-caption-contributor">- by  <%= article.username %></p>
+                  <div class="stock-stock-caption-details">
+                    <p class="stock-stock-caption-contributor">- by  <%= stock.username %></p>
                     <!-- 投稿時間処理 -->
                     <% 
                     let months = {
@@ -65,10 +69,11 @@
                       Sat: "土", 
                       Sun: "日"
                     };
-                    let time = String(article.contributed_time).split(' ');
+                    let time = String(stock.contributed_time).split(' ');
                     %>
-                    <p class="top-article-caption-postingtime">- <%= time[3] %>/<%= months[time[1]] %>/<%= time[2] %>(<%= weeks[time[0]] %>)<%= String(time[4]).slice(0, -3) %></p>
-                    <p class="top-article-caption-likes">- <img src="/images/ico_heart_pink_full.png"></p>
+                    <p class="stock-stock-caption-postingtime">- <%= time[3] %>/<%= months[time[1]] %>/<%= time[2] %>(<%= weeks[time[0]] %>)<%= String(time[4]).slice(0, -3) %></p>
+                    <p class="stock-stock-caption-likes">- <img src="/images/ico_heart_pink_full.png">100</p>
+                    <p class="delete-btn"id="delete_btn"><i class="fas fa-backspace"></i></p>
                   </div>
                 </div>     
               </div>
@@ -79,4 +84,6 @@
       </div>
     </div>
   </main>
+
+  <%- include("./set/footer"); %>
 </body>

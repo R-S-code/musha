@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 // トップ
 app.get('/', (req, res) => {
   connection.query(
-    'SELECT post_id, title, artist, username, contributed_time FROM posts JOIN users ON posts.contributor_id = users.user_id',
+    'SELECT post_id, title, artist, username, contributed_time FROM posts JOIN users ON posts.contributor_id = users.user_id ORDER BY post_id DESC',
     (error, results) => {
       console.log(results);
       res.render('top.ejs', {posts: results});
@@ -109,8 +109,11 @@ app.post('/subscribe',
             console.log(error);
             res.render('subscribe.ejs', { errors: errors }); 
           } else {
-            req.session.userId = results.insertId;
+            req.session.userid = results.insertId;
             req.session.username = username;
+            console.log(req.session.userId);
+            console.log(req.session.username);
+            console.log(results);
             res.redirect('/'); 
           }
         }
@@ -355,7 +358,7 @@ app.get('/stock', (req, res) => {
   const userid = req.session.userid;
 
   connection.query(
-    "SELECT * FROM stock WHERE user_id = ?",
+    "SELECT * FROM stock JOIN posts ON stock.post_id = posts.post_id JOIN users ON stock.user_id = users.user_id WHERE stock.user_id = ?",
     [userid],
     (error, result)=> {
       if(error) {
@@ -375,7 +378,7 @@ app.get("/stock_axios_check", (req, res)=>{
   userid = req.session.userid;
 
   connection.query(
-    "SELECT * FROM stock WHERE article_id = ? AND user_id = ?",
+    "SELECT * FROM stock WHERE post_id = ? AND user_id = ?",
     [postid, userid],
     (error, result)=> {
       if(error) {
@@ -398,7 +401,7 @@ app.get("/stock_axios", (req, res)=>{
   userid = req.session.userid;
   
   connection.query(
-    "INSERT INTO stock (article_id, user_id) VALUES (? ,?)",
+    "INSERT INTO stock (post_id, user_id) VALUES (? ,?)",
     [postid, userid],
     (error, result)=> {
       if(error) {
@@ -418,7 +421,7 @@ app.get("/unstock_axios", (req, res)=>{
   userid = req.session.userid;
   
   connection.query(
-    "DELETE FROM stock WHERE article_id = ? AND user_id = ?",
+    "DELETE FROM stock WHERE post_id = ? AND user_id = ?",
     [postid, userid],
     (error, result)=> {
       if(error) {

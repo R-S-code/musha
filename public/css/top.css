@@ -49,21 +49,28 @@
 }
 /* musha概要 */
 .top-explain-wrapper {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 .top-musha-message {
-  background-color: var(--base-green);
-  color: var(--base-white);
-  display: inline-block;
+  align-items: center;
+  display: flex;
   font-size: 18px;
   font-weight: 700;
   padding: 5px;
 }
+.top-musha-message span {
+  background-color: var(--base-green);
+  display: inline-block;
+  height: 20px;
+  margin-right: 5px;
+  width: 5px;
+}
 .top-musha-explain {
-  border-radius: 5px;
   margin-top: 10px;
+  margin-left: 10px;
   padding: 5px;
   line-height: 25px;
+  text-decoration: underline var(--base-green);
 }
 /* ログイン前登録ログインボタン */
 .top-sign-btns {
@@ -157,13 +164,13 @@
   align-items: center;
   background-color: var(--base-gray-one);
   display: flex;
-  padding: 15px var(--base-side-space);
+  padding: 20px 15px;
 }
 .top-articles-wrapper .top-article-caption-wrapper-two {
   align-items: center;
   background-color: var(--base-gray-two);
   display: flex;
-  padding: 15px var(--base-side-space);
+  padding: 20px 15px;
 }
 .top-articles-wrapper h1 {
   font-weight: 700;

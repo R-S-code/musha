@@ -30,55 +30,61 @@ button {
   line-height: 1.15; /* 1 */
 }
 /* main css */
-.article-detail-whole-wrapper {
+.post-detail-whole-wrapper {
   box-sizing: border-box;
   padding: 70px 0 0 0;
 }
 
-.article-detail-whole-container {
+.post-detail-whole-container {
   background-color: rgb(255, 255, 255);
   border: 1px solid var(--base-gray-one);
   box-shadow: 0px 3px 12px rgba(136, 136, 136, 0.25);
 }
-.article-detail-top-wrapper {
+.post-detail-top-wrapper {
   background: linear-gradient(90deg, var(--base-aqua) 0%, rgba(255, 255, 255, 0) 100%), var(--base-green);
   padding-bottom: 30px;
-  position:relative;
+  position: relative;
 }
-.article-detail-head-wrapper {
+.post-detail-head-wrapper {
   align-items: center;
   display: flex;
   font-size: var(--base-font-size);
   padding: 20px var(--base-side-space) 0;
 }
-.article-detail-head-wrapper p:last-child {
+.post-detail-head-wrapper p:last-child {
   color: var(--base-white);
 }
-.article-detail-head-username {
+.post-detail-head-username {
   color: white;
   margin-left: 10px;
 }
-.article-detail-head-like {
+.post-detail-head-like {
   color: var(--base-pink);
   margin-left: auto;
 }
-.article-detail-contributor-icon img{
+.post-detail-contributor-icon img{
   border-radius: 50%;
   height: 30px;
   object-fit: contain;
   width: 30px;
 }
-.article-detail-title {
+.post-detail-title {
   color: var(--base-white);
   font-weight: 700;
   font-size: 24px;
   margin-top: 15px;
   text-align: center;
 }
-.article-detaile-stock-btn-wrapper {
+/* アーティスト名 */
+.post-detail-artist-name {
+  color: var(--base-white);
+  font-weight: 700;
   text-align: center;
 }
-.article-detaile-stock-btn {
+.post-detaile-stock-btn-wrapper {
+  text-align: center;
+}
+.post-detaile-stock-btn {
   background-color: var(--base-aqua);
   border-radius: 36px;
   box-shadow: 0 5px 4px rgb(200, 200, 200);
@@ -91,16 +97,16 @@ button {
   padding: 7px 10px;
   transition: 0.2s;
 }
-.article-detaile-stock-btn:hover {
+.post-detaile-stock-btn:hover {
   background-color: var(--base-hover-aqua);
   box-shadow: none;
   transform: translate(0, 5px);
 }
-.article-detail-contents-wrapper {
+.post-detail-contents-wrapper {
   padding: 20px 10px;
 }
 /* 投稿内容 */
-.article-detail-contents-container {
+.post-detail-contents-container {
   background-color: var(--base-white);
   border: 2px solid var(--base-gray-two);
   border-radius: 5px;
@@ -110,57 +116,57 @@ button {
   word-break: break-all;
 }
 /* コメント */
-.article-detail-comments-title-wrapper {
+.post-detail-comments-title-wrapper {
   align-items: center;
   display: flex;
   margin-top: 30px;
 }
-.article-detail-comments-title-wrapper div:first-child {
+.post-detail-comments-title-wrapper div:first-child {
   margin-right: 10px;
 }
-.article-detail-comments-ico img {
+.post-detail-comments-ico img {
   height: 20px;
   width: 20px;
 }
-.article-detail-comments-wrapper {
+.post-detail-comments-wrapper {
   padding: 0 25px;
 }
-.article-detail-comments-wrapper p {
+.post-detail-comments-wrapper p {
   font-size: var(--base-font-size);
 }
-.article-detail-comments-wrapper hr {
+.post-detail-comments-wrapper hr {
   color: var(--border-gray);
   margin-top: 10px;
 }
-.article-detail-comments-title {
+.post-detail-comments-title {
   background: linear-gradient(90deg, var(--base-aqua) 0%, rgba(255, 255, 255, 0) 100%), var(--base-green);
   -webkit-background-clip: text;
   color: transparent;
   font-size: 20px;
   font-weight: 700;
 }
-.article-detail-comments-head {
+.post-detail-comments-head {
   align-items: center;
   display: flex;
   margin-top: 30px;
 }
-.article-detail-comments-head div {
+.post-detail-comments-head div {
   margin-right: 15px;
 }
-.article-detail-comments-head img {
+.post-detail-comments-head img {
   border-radius: 50%;
   height: 40px;
   object-fit: contain;
   width: 40px;
 }
-.article-detail-comments-comment {
+.post-detail-comments-comment {
   margin-top: 15px;
   word-break: break-all;
 }
-.article-detail-post-wrapper {
+.post-detail-post-wrapper {
   padding: 0 20px;
 }
-.article-detail-comments-post-title {
+.post-detail-comments-post-title {
   background: linear-gradient(90deg, var(--base-aqua) 0%, rgba(255, 255, 255, 0) 100%), var(--base-green);
   -webkit-background-clip: text;
   color: transparent;
@@ -168,7 +174,7 @@ button {
   font-weight: 700;
   margin-top: 35px;
 }
-.article-detail-input-commment {
+.post-detail-input-commment {
   border: 1px solid var(--border-gray);
   border-radius: 5px;
   height: 120px;
@@ -176,7 +182,7 @@ button {
   padding: 10px;
   width: 96%;
 }
-.article-detail-postcomment-btn {
+.post-detail-postcomment-btn {
   background-color: var(--base-green);
   border-radius: 5px;
   color: var(--base-white);
@@ -185,6 +191,6 @@ button {
   padding: 8px 20px;
   transition: 0.2s;
 }
-.article-detail-postcomment-btn:hover {
+.post-detail-postcomment-btn:hover {
   background-color: var(--base-hover-green);
 } 

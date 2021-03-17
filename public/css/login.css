@@ -1,13 +1,9 @@
 @import url("set/variable.css");
 
 .login-whole-wrapper {
-  padding: 70px 20px 0;
+  padding: 70px 0 0 0;
 }
-@media screen and (max-width: 560px) {
-  .login-whole-wrapper {
-    padding: 70px 0 0;
-  }
-}
+
 .login-whole-container {
   background-color: rgb(255, 255, 255);
   border: 1px solid var(--base-gray-one);
